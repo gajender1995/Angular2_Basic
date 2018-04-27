@@ -1,0 +1,17 @@
+<div>
+    <p>{{productTitle}}</p>
+    Filter By : <input type="text" [(ngModel)]='filterText' />
+        <div *ngIf='products'>
+        <button class="btn btn-success" (click)='toggelImage()'> {{imageFlag ? 'Hide' : 'Show '}} Image</button>
+        <table>
+            <ul *ngFor='let product of filterProduct'>
+                <li>{{product.productName }}</li>
+                <li>{{product.productCode | convertToSpace: '-' }}</li>
+                <li>{{product.price | currency: 'USD' :true : '1.2-2'}}</li>
+                <pm-star [rating]='product.starRating' (ratingClicked)='onRatingClick($event)' ></pm-star>
+                <img *ngIf='imageFlag' src='{{product.imageUrl}}' />
+            </ul>
+        </table>
+    </div>
+    <input type="text" [(ngModel)]='productTitle' />
+</div>
